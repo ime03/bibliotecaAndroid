@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registrazione">
+
+    <ImageView
+        android:id="@+id/LogoRegistrazione"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_menu_book_24" />
+
+    <EditText
+        android:id="@+id/EditTextNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="nome"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogoRegistrazione" />
+
+    <EditText
+        android:id="@+id/EditTextCognome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Cognome"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/EditTextNome"
+        app:layout_constraintStart_toStartOf="@+id/EditTextNome"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextNome" />
+
+    <EditText
+        android:id="@+id/EditTextCF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Codice Fiscale"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/EditTextCognome"
+        app:layout_constraintStart_toStartOf="@+id/EditTextCognome"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextCognome" />
+
+    <EditText
+        android:id="@+id/EditTextNascita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Data di nascita"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/EditTextCF"
+        app:layout_constraintStart_toStartOf="@+id/EditTextCF"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextCF" />
+
+    <EditText
+        android:id="@+id/EditTextEmailR"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/EditTextNascita"
+        app:layout_constraintStart_toStartOf="@+id/EditTextNascita"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextNascita" />
+
+    <EditText
+        android:id="@+id/EditTextPasswordR"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/EditTextEmailR"
+        app:layout_constraintStart_toStartOf="@+id/EditTextEmailR"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextEmailR" />
+
+    <Button
+        android:id="@+id/ButtonRegistrati"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Registrati"
+        app:layout_constraintEnd_toEndOf="@+id/EditTextPasswordR"
+        app:layout_constraintStart_toStartOf="@+id/EditTextPasswordR"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextPasswordR" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
