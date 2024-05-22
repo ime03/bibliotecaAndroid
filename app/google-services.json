@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "865317285823",
+    "firebase_url": "https://biblioteca-a8291-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "biblioteca-a8291",
+    "storage_bucket": "biblioteca-a8291.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865317285823:android:457ddabf8360d4c5453b0a",
+        "android_client_info": {
+          "package_name": "it.insubria.biblioteca"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh_iX78YxZbWJnkgbmGmfCduHuyd8av58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
