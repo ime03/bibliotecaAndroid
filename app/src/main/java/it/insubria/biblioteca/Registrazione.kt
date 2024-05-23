@@ -53,22 +53,31 @@ class Registrazione : AppCompatActivity() {
         val mail = findViewById<EditText>(R.id.EditTextEmailR).text.toString()
         val pass = findViewById<EditText>(R.id.EditTextPasswordR).text.toString()
         auth.createUserWithEmailAndPassword(mail,pass).addOnSuccessListener {
-            var utente: HashMap<String,Any> = HashMap()
-            val uid = auth.uid
-            utente["userID"]= uid.toString()
-            utente["nome"]= nome
-            utente["ruolo"]="utente"
-            utente["cognome"]=cognome
-            utente["codF"]=cf
-            utente["dataNascita"] = dnascita
-            ref.child(uid!!).setValue(utente).addOnSuccessListener {
-                Toast.makeText(this,"Registrazione effettuata con successo",Toast.LENGTH_SHORT).show()
-            }
-        }.addOnFailureListener{
-            e->
-            Toast.makeText(this,"Registrazione non andata a buon fine a causa di ${e.message}",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Verifica la tua email",Toast.LENGTH_SHORT).show()
+            auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
+                var utente: HashMap<String,Any> = HashMap()
+                val uid = auth.uid
+                utente["userID"]= uid.toString()
+                utente["nome"]= nome
+                utente["ruolo"]="utente"
+                utente["cognome"]=cognome
+                utente["codF"]=cf
+                utente["dataNascita"] = dnascita
+                ref.child(uid!!).setValue(utente).addOnSuccessListener {
+                    Toast.makeText(this,"Registrazione effettuata con successo",Toast.LENGTH_SHORT).show()
+                }
+            }?.addOnFailureListener{ e->
+                Toast.makeText(this,"Registrazione non andata a buon fine a causa di ${e.message}",Toast.LENGTH_SHORT).show()
 
+            }
+            }.addOnFailureListener { e ->
+            Toast.makeText(
+                this,
+                "Registrazione non andata a buon fine a causa di ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
         }
+
 
 
     }
