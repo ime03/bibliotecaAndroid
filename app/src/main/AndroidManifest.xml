@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Biblioteca"
         tools:targetApi="31">
         <activity
-            android:name=".User_Home"
+            android:name=".AdminHome"
             android:exported="false" />
         <activity
-            android:name=".Admin_Home"
+            android:name=".UserHome"
             android:exported="false" />
         <activity
             android:name=".Registrazione"
