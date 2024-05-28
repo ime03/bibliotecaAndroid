@@ -1,9 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Biblioteca" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="editTextStyle">@style/app_editTextStyle</item>
+        <item name="materialButtonStyle">@style/app_ButtonStyle</item>
     </style>
 
     <style name="Theme.Biblioteca" parent="Base.Theme.Biblioteca" />
+
+    <style name="app_editTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/custom_input_login</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="app_ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/custom_button</item>
+    </style>
+
+
+
+
 </resources>

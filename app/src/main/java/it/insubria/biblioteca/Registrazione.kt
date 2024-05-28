@@ -55,15 +55,9 @@ class Registrazione : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(mail,pass).addOnSuccessListener {
             Toast.makeText(this,"Verifica la tua email",Toast.LENGTH_SHORT).show()
             auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
-                var utente: HashMap<String,Any> = HashMap()
                 val uid = auth.uid
-                utente["userID"]= uid.toString()
-                utente["nome"]= nome
-                utente["ruolo"]="utente"
-                utente["cognome"]=cognome
-                utente["codF"]=cf
-                utente["dataNascita"] = dnascita
-                ref.child(uid!!).setValue(utente).addOnSuccessListener {
+                val user = Utente(uid.toString(),nome,cognome,cf,dnascita,"utente")
+                ref.child(uid!!).setValue(user).addOnSuccessListener {
                     Toast.makeText(this,"Registrazione effettuata con successo",Toast.LENGTH_SHORT).show()
                 }
             }?.addOnFailureListener{ e->

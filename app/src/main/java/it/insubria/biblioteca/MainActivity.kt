@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             if(auth.currentUser?.isEmailVerified==true)
             {
                 controllaRuolo()
-                Log.v("auth","ok")
             }
         }.addOnFailureListener {
             e->
@@ -88,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                 val nome = snapshot.child("nome").value.toString()
                 val dnascita = snapshot.child("dataNascita").value.toString()
                 val userId = snapshot.child("userID").value.toString()
-                val u = Utente(userId,nome,cognome,cf,dnascita,tipoUtente)
                 if(tipoUtente.equals("amministratore"))
                 {
                     Toast.makeText(this@MainActivity,"Benvenuto amministratore",Toast.LENGTH_SHORT).show()

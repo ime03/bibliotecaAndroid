@@ -1,11 +1,14 @@
 package it.insubria.biblioteca
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -37,6 +40,14 @@ class Profilo : Fragment() {
         codF = view.findViewById(R.id.cf_profilo)
         dataNascita = view.findViewById(R.id.datanascita_profilo)
         email = view.findViewById(R.id.email_profilo)
+        val btnLogout = view.findViewById<Button>(R.id.logoutButton)
+            btnLogout.setOnClickListener {
+                auth.signOut()
+                val intent = Intent(context,MainActivity::class.java)
+                Toast.makeText(context,"Logout effettuato",Toast.LENGTH_SHORT).show()
+                startActivity(intent)
+                requireActivity().finish()
+        }
         loadUserProfile()
         return view
     }
