@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InserisciAct">
+
+    <EditText
+        android:id="@+id/editTextTitolo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Titolo"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/editTextIsbn"
+        app:layout_constraintStart_toStartOf="@+id/editTextIsbn"
+        app:layout_constraintTop_toBottomOf="@+id/editTextIsbn" />
+
+    <EditText
+        android:id="@+id/editTextAutore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Autore"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTitolo"
+        app:layout_constraintStart_toStartOf="@+id/editTextTitolo"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitolo" />
+
+    <EditText
+        android:id="@+id/editTextGenere"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Genere"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/editTextAutore"
+        app:layout_constraintStart_toStartOf="@+id/editTextAutore"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAutore" />
+
+    <EditText
+        android:id="@+id/editTextCopie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Disponibilità"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/editTextGenere"
+        app:layout_constraintStart_toStartOf="@+id/editTextGenere"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGenere" />
+
+    <EditText
+        android:id="@+id/editTextIsbn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="ISBN"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo2" />
+
+    <Button
+        android:id="@+id/buttonCopertina"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Inserisci Copertina"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCopie"
+        app:layout_constraintStart_toStartOf="@+id/editTextCopie"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCopie" />
+
+    <ImageView
+        android:id="@+id/imageViewCopertina"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonInserisci"
+        app:layout_constraintVertical_bias="0.2"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/buttonInserisci"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Aggiungi"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCopertina"
+        app:layout_constraintStart_toStartOf="@+id/buttonCopertina"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCopertina" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

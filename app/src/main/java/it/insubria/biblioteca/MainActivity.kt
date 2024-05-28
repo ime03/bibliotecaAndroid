@@ -91,13 +91,12 @@ class MainActivity : AppCompatActivity() {
                 val u = Utente(userId,nome,cognome,cf,dnascita,tipoUtente)
                 if(tipoUtente.equals("amministratore"))
                 {
-                    Toast.makeText(this@MainActivity,"Benvenuto utente",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity,"Benvenuto amministratore",Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@MainActivity,AdminHome::class.java)
                     startActivity(intent)
                 }
                 else if(tipoUtente.equals("utente"))
                 {
-                    Log.v("user","ok")
                     val intent = Intent(this@MainActivity,UserHome::class.java)
                     startActivity(intent)
                 }
