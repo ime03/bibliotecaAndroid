@@ -1,71 +1,68 @@
 package it.insubria.biblioteca
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-
 class Profilo : Fragment() {
+
     private lateinit var auth: FirebaseAuth
-    private lateinit var u: Utente
-    override fun onCreateView(
+    private lateinit var database: DatabaseReference
 
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    private lateinit var nome: TextView
+    private lateinit var cognome: TextView
+    private lateinit var codF: TextView
+    private lateinit var dataNascita: TextView
+    private lateinit var email: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        u = Utente()
+        database = FirebaseDatabase.getInstance().getReference("users")
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_profilo, container, false)
-
-        val ref = FirebaseDatabase.getInstance().getReference("users")
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for (userSnapshot in snapshot.children)
-                    {
-                        if(userSnapshot.key == auth.uid)
-                        {
-                            val nome = userSnapshot.child("nome").getValue(String::class.java)
-                            val cognome = userSnapshot.child("cognome").getValue(String::class.java)
-                            val dataN = userSnapshot.child("dataNascita").getValue(String::class.java)
-                            val cf = userSnapshot.child("codF").getValue(String::class.java)
-                            val tvNome = view.findViewById<TextView>(R.id.nomeTextView)
-                            val tvData = view.findViewById<TextView>(R.id.dnTextView)
-                            val tvCf = view.findViewById<TextView>(R.id.cfTextView)
-                            val tvCognome = view.findViewById<TextView>(R.id.cognomeTextView)
-                            tvNome.text = tvNome.text.toString() + nome
-                            tvCognome.text = tvCognome.text.toString()+cognome
-                            tvCf.text = tvCf.text.toString()+cf
-                            tvData.text = tvData.text.toString()+dataN
-                        }
-                    }
-                }
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-        val logoutButton = view.findViewById<Button>(R.id.btnLog).setOnClickListener {
-            auth.signOut()
-            Toast.makeText(context,"Logout effettuato",Toast.LENGTH_SHORT).show()
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-        }
+        nome = view.findViewById(R.id.nome_profilo)
+        cognome = view.findViewById(R.id.cognome_profilo)
+        codF = view.findViewById(R.id.cf_profilo)
+        dataNascita = view.findViewById(R.id.datanascita_profilo)
+        email = view.findViewById(R.id.email_profilo)
+        loadUserProfile()
         return view
     }
 
+    private fun loadUserProfile() {
+        val currentUser = auth.currentUser
+        currentUser?.let {
+            email.text = it.email
+            val userId = it.uid
+            database.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val nomeValue = snapshot.child("nome").value.toString()
+                    val cognomeValue = snapshot.child("cognome").value.toString()
+                    val codFValue = snapshot.child("codF").value.toString()
+                    val dataNascitaValue = snapshot.child("dataNascita").value.toString()
+
+                    nome.text = nomeValue
+                    cognome.text = cognomeValue
+                    codF.text = codFValue
+                    dataNascita.text = dataNascitaValue
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle database error
+                }
+            })
+        }
+    }
 }
