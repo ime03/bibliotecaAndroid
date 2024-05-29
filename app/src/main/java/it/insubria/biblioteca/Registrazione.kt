@@ -1,5 +1,6 @@
 package it.insubria.biblioteca
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -59,6 +60,9 @@ class Registrazione : AppCompatActivity() {
                 val user = Utente(uid.toString(),nome,cognome,cf,dnascita,"utente")
                 ref.child(uid!!).setValue(user).addOnSuccessListener {
                     Toast.makeText(this,"Registrazione effettuata con successo",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }?.addOnFailureListener{ e->
                 Toast.makeText(this,"Registrazione non andata a buon fine a causa di ${e.message}",Toast.LENGTH_SHORT).show()

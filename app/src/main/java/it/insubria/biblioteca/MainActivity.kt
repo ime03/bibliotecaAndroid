@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity() {
             {
                 controllaRuolo()
             }
+            else
+            {
+                Toast.makeText(this@MainActivity,"Verifica la mail prima di accedere",Toast.LENGTH_SHORT).show()
+            }
         }.addOnFailureListener {
             e->
             Toast.makeText(this,"Errore di autenticazione a causa di: ${e.message}",Toast.LENGTH_SHORT).show()
