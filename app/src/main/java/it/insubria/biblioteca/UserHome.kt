@@ -2,6 +2,7 @@ package it.insubria.biblioteca
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import it.insubria.biblioteca.databinding.ActivityMainBinding
@@ -12,7 +13,7 @@ class UserHome : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //binding = ActivityMainBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_user_home)
         replaceFragment(Home())
 
@@ -33,13 +34,6 @@ class UserHome : AppCompatActivity() {
             true
         }
     }
-
-    /*private fun replaceFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
-        fragmentTransaction.commit()
-    }*/
 
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commit()
