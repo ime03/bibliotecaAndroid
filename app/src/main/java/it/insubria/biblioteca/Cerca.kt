@@ -38,7 +38,7 @@ class Cerca : Fragment() {
 
         database.addValueEventListener(object : ValueEventListener {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
+            /*override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     itemList.clear()
                     for (userSnapshot in snapshot.children) {
@@ -61,7 +61,32 @@ class Cerca : Fragment() {
                         })
                     }
                 }
+            }*/
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    itemList.clear()
+                    for (userSnapshot in snapshot.children) {
+                        val libro = userSnapshot.getValue(Libro::class.java)
+                        itemList.add(libro!!)
+                    }
+                    recyclerView.adapter = Adapter(itemList).apply {
+                        setOnItemClickListener(object : Adapter.onItemClickListener{
+                            override fun onItemClick(position: Int) {
+                                val bundle = Bundle().apply {
+                                    putParcelable("libro", itemList[position])
+                                }
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.frame_layout, DettagliLibro().apply {
+                                        arguments = bundle
+                                    })
+                                    .addToBackStack(null)
+                                    .commit()
+                            }
+                        })
+                    }
+                }
             }
+
 
             override fun onCancelled(error: DatabaseError) {
                 // Gestisci onCancelled
