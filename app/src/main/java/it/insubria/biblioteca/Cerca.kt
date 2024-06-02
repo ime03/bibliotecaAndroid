@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ class Cerca : Fragment() {
         itemList = arrayListOf()
         getItemData()
 
+
         return view
     }
 
@@ -38,16 +40,31 @@ class Cerca : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    itemList.clear()
                     for (userSnapshot in snapshot.children) {
                         val libro = userSnapshot.getValue(Libro::class.java)
                         itemList.add(libro!!)
                     }
-                    recyclerView.adapter = Adapter(itemList)
+                    recyclerView.adapter = Adapter(itemList).apply {
+                        setOnItemClickListener(object : Adapter.onItemClickListener{
+                            override fun onItemClick(position: Int) {
+                                val bundle = Bundle().apply {
+                                    putParcelable("libro", itemList[position])
+                                }
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container, DettagliLibro().apply {
+                                        arguments = bundle
+                                    })
+                                    .addToBackStack(null)
+                                    .commit()
+                            }
+                        })
+                    }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled
+                // Gestisci onCancelled
             }
         })
     }
