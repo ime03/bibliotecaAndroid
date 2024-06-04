@@ -52,7 +52,7 @@ class Cerca : Fragment() {
                                     putParcelable("libro", itemList[position])
                                 }
                                 parentFragmentManager.beginTransaction()
-                                    .replace(R.id.frame_layout, DettagliLibro().apply {
+                                    .replace(R.id.frame_layout, DettagliLibroUtente().apply {
                                         arguments = bundle
                                     })
                                     .addToBackStack(null)

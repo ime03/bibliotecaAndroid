@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import it.insubria.biblioteca.databinding.ActivityMainBinding
 
 class UserHome : AppCompatActivity() {
 
@@ -15,13 +14,13 @@ class UserHome : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_user_home)
-        replaceFragment(Home())
+        replaceFragment(HomeU())
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.home -> replaceFragment(Home())
+                R.id.home -> replaceFragment(HomeU())
                 R.id.cerca -> replaceFragment(Cerca())
                 R.id.prestiti -> replaceFragment(Prestiti())
                 R.id.profilo -> replaceFragment(Profilo())

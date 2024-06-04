@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class AdminHome : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    val homeFragment = Home()
+    val homeFragment = HomeA()
     val inserisciFragment = Inserisci()
     val gestioneFragment = Gestione()
     val profiloFragment = Profilo()

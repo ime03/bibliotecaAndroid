@@ -46,13 +46,14 @@ class Inserisci : Fragment() {
         val autore = view.findViewById<EditText>(R.id.editTextAutore)
         val disponibilità = view.findViewById<EditText>(R.id.editTextCopie)
         val genere = view.findViewById<EditText>(R.id.editTextGenere)
+        val descrizione = view.findViewById<EditText>(R.id.editTextDescrizione)
         val isbnOk = campoValido(isbn, "L'isbn non deve essere vuoto")
         val titoloOk = campoValido(titolo, "Il titolo non deve essere vuoto")
         val autoreOk = campoValido(autore, "L'autore non deve essere vuoto")
         val disponibilitàOk = campoValido(disponibilità, "La disponibilità non deve essere vuota")
         val genereOk = campoValido(genere, "Il genere non deve essere vuoto")
-        if (isbnOk && titoloOk && autoreOk && disponibilitàOk && genereOk) {
-            Log.v("CONTROLLO","OK")
+        val descrizioneOk = campoValido(descrizione, "La descrizione non deve essere vuota")
+        if (isbnOk && titoloOk && autoreOk && disponibilitàOk && genereOk && descrizioneOk) {
             inserimento(view)
         } else {
             Toast.makeText(context, "I campi devono essere tutti completi", Toast.LENGTH_SHORT)
@@ -76,6 +77,7 @@ class Inserisci : Fragment() {
         val isbn = view.findViewById<EditText>(R.id.editTextIsbn).text.toString()
         val titolo = view.findViewById<EditText>(R.id.editTextTitolo).text.toString()
         val autore = view.findViewById<EditText>(R.id.editTextAutore).text.toString()
+        val descrizione = view.findViewById<EditText>(R.id.editTextDescrizione).text.toString()
         val disponibilità = view.findViewById<EditText>(R.id.editTextCopie).text.toString().toInt()
         val genere = view.findViewById<EditText>(R.id.editTextGenere).text.toString()
         val idCaricamneto = ref.push().key!!
@@ -83,8 +85,8 @@ class Inserisci : Fragment() {
             storageRef.child(idCaricamneto).putFile(selectedUri).addOnSuccessListener { task ->
                 task.metadata!!.reference!!.downloadUrl.addOnSuccessListener { downloadUri ->
                     val imageUrl = downloadUri.toString()
-                    val book = Book(isbn,titolo,autore,genere,disponibilità,imageUrl, LocalDate.now().toString())
-                    ref.child(idCaricamneto).setValue(book)
+                    val libro = Libro(isbn,titolo,autore,genere,disponibilità,imageUrl, LocalDate.now().toString(), descrizione)
+                    ref.child(idCaricamneto).setValue(libro)
                         .addOnCompleteListener {
                             Toast.makeText(context, "Record Inserito", Toast.LENGTH_SHORT).show()
                             view.findViewById<EditText>(R.id.editTextIsbn).text.clear()
