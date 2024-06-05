@@ -1,20 +1,26 @@
 package it.insubria.biblioteca
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 
 class Profilo : Fragment() {
 
@@ -26,6 +32,17 @@ class Profilo : Fragment() {
     private lateinit var codF: TextView
     private lateinit var dataNascita: TextView
     private lateinit var email: TextView
+    private lateinit var imgProfilo: ImageView
+
+    private val selezionaImgLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            data?.data?.let { uri ->
+                caricaImg(uri)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
@@ -40,6 +57,10 @@ class Profilo : Fragment() {
         codF = view.findViewById(R.id.cf_profilo)
         dataNascita = view.findViewById(R.id.datanascita_profilo)
         email = view.findViewById(R.id.email_profilo)
+        imgProfilo = view.findViewById(R.id.imageView3)
+        imgProfilo.setOnClickListener {
+            selezionaImg()
+        }
         val btnLogout = view.findViewById<Button>(R.id.logoutButton)
             btnLogout.setOnClickListener {
                 auth.signOut()
@@ -52,6 +73,42 @@ class Profilo : Fragment() {
         return view
     }
 
+    private fun selezionaImg() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        selezionaImgLauncher.launch(Intent.createChooser(intent, "Seleziona un'immagine di profilo"))
+    }
+
+    private fun caricaImg(filePath: Uri) {
+        val storageRef = FirebaseStorage.getInstance().reference
+        val profileImagesRef = storageRef.child("profile_images/${auth.currentUser?.uid}")
+        val uploadTask = profileImagesRef.putFile(filePath)
+
+        uploadTask.addOnSuccessListener { taskSnapshot ->
+            profileImagesRef.downloadUrl.addOnSuccessListener { uri ->
+                val imageURL = uri.toString()
+                aggiornaImg(imageURL)
+                loadUserProfile()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(context, "Errore durante il caricamento dell'immagine del profilo", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun aggiornaImg(imageURL: String) {
+        val currentUser = auth.currentUser
+        currentUser?.let {
+            val userId = it.uid
+            val userRef = database.child(userId)
+            userRef.child("imgProfilo").setValue(imageURL)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Immagine del profilo aggiornata", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Errore durante l'aggiornamento dell'immagine del profilo", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
     private fun loadUserProfile() {
         val currentUser = auth.currentUser
         currentUser?.let {
@@ -68,6 +125,12 @@ class Profilo : Fragment() {
                     cognome.text = cognomeValue
                     codF.text = codFValue
                     dataNascita.text = dataNascitaValue
+                    val imgProfiloURL = snapshot.child("imgProfilo").value.toString()
+                    Glide.with(requireContext())
+                        .load(imgProfiloURL)
+                        .placeholder(R.drawable.placeholder_image)
+                        .error(R.drawable.error_image)
+                        .into(imgProfilo)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
