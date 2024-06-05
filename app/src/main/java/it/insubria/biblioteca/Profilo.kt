@@ -61,7 +61,7 @@ class Profilo : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val nomeValue = snapshot.child("nome").value.toString()
                     val cognomeValue = snapshot.child("cognome").value.toString()
-                    val codFValue = snapshot.child("codF").value.toString()
+                    val codFValue = snapshot.child("cf").value.toString()
                     val dataNascitaValue = snapshot.child("dataNascita").value.toString()
 
                     nome.text = nomeValue
