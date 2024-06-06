@@ -80,12 +80,12 @@ class Inserisci : Fragment() {
         val descrizione = view.findViewById<EditText>(R.id.editTextDescrizione).text.toString()
         val disponibilità = view.findViewById<EditText>(R.id.editTextCopie).text.toString().toInt()
         val genere = view.findViewById<EditText>(R.id.editTextGenere).text.toString()
-        val idCaricamneto = ref.push().key!!
+        val idCaricamneto = ref.push().key.toString()
         uri?.let { selectedUri ->
             storageRef.child(idCaricamneto).putFile(selectedUri).addOnSuccessListener { task ->
                 task.metadata!!.reference!!.downloadUrl.addOnSuccessListener { downloadUri ->
                     val imageUrl = downloadUri.toString()
-                    val libro = Libro(isbn,titolo,autore,genere,disponibilità,imageUrl, LocalDate.now().toString(), descrizione)
+                    val libro = Libro(idCaricamneto,isbn,titolo,autore,genere,disponibilità,imageUrl, LocalDate.now().toString(), descrizione)
                     ref.child(idCaricamneto).setValue(libro)
                         .addOnCompleteListener {
                             Toast.makeText(context, "Record Inserito", Toast.LENGTH_SHORT).show()
@@ -97,6 +97,7 @@ class Inserisci : Fragment() {
                             view.findViewById<ImageView>(R.id.imageViewCopertina).setImageResource(R.drawable.ic_vuoto)
                             val intent = Intent(context,AdminHome::class.java)
                             startActivity(intent)
+                            requireActivity().finish()
                         }
                         .addOnFailureListener { e ->
                             Toast.makeText(context, "Inserimento non andato a buon fine a causa ${e.message}", Toast.LENGTH_SHORT).show()
