@@ -14,10 +14,10 @@
         android:text="Accedi"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/TextViewRegistrati"
+        app:layout_constraintEnd_toEndOf="@+id/TextViewPassReset"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/TextViewRegistrati"
-        app:layout_constraintTop_toBottomOf="@+id/TextViewRegistrati" />
+        app:layout_constraintStart_toStartOf="@+id/TextViewPassReset"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewPassReset" />
 
     <EditText
         android:id="@+id/EditTextEmail"
@@ -51,16 +51,30 @@
         app:layout_constraintTop_toBottomOf="@+id/EditTextEmail" />
 
     <TextView
-        android:id="@+id/TextViewRegistrati"
+        android:id="@+id/TextViewPassReset"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Non sei registrato? registrati"
+        android:text="Password dimenticata?"
         android:textColor="#0076ff"
         app:layout_constraintEnd_toEndOf="@+id/EditTextPassword"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/EditTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/EditTextPassword" />
+
+    <TextView
+        android:id="@+id/TextViewRegistrati"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="o registrati"
+        android:textColor="#aaabaa"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/ButtonAccedi"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ButtonAccedi"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonAccedi" />
 
     <ImageView
         android:id="@+id/imageView2"

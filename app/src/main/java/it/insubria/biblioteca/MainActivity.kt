@@ -22,6 +22,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         auth= FirebaseAuth.getInstance()
         val reg = findViewById<TextView>(R.id.TextViewRegistrati)
+        val reset = findViewById<TextView>(R.id.TextViewPassReset)
+
+        reset.setOnClickListener {
+            val intent = Intent(
+                this,PassReset::class.java
+            )
+            startActivity(intent)
+        }
 
         reg.setOnClickListener{
             val intent = Intent(

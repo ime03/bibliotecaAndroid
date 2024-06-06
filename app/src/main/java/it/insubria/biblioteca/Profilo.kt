@@ -61,6 +61,11 @@ class Profilo : Fragment() {
         imgProfilo.setOnClickListener {
             selezionaImg()
         }
+        val reset = view.findViewById<Button>(R.id.resetButton)
+            reset.setOnClickListener{
+                val intent = Intent(context,PassReset::class.java)
+                startActivity(intent)
+            }
         val btnLogout = view.findViewById<Button>(R.id.logoutButton)
             btnLogout.setOnClickListener {
                 auth.signOut()
@@ -68,7 +73,7 @@ class Profilo : Fragment() {
                 Toast.makeText(context,"Logout effettuato",Toast.LENGTH_SHORT).show()
                 startActivity(intent)
                 requireActivity().finish()
-        }
+            }
         loadUserProfile()
         return view
     }
