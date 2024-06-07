@@ -84,7 +84,7 @@ class DettagliLibroUtente : Fragment() {
         val disponibilità = libro?.disponibilità
         val idPrestito = ref.push().key.toString()
         val p = Prestito(idPrestito,idLibro,
-            auth.currentUser?.uid,LocalDate.now().toString(),LocalDate.now().plusDays(30).toString())
+            auth.currentUser?.uid,LocalDate.now().toString(),LocalDate.now().plusDays(30).toString(),"")
         ref.child(idPrestito).setValue(p).addOnSuccessListener {
             Toast.makeText(context,"Prestito aggiunto correttamente!",Toast.LENGTH_SHORT).show()
             val btn_prestito = view?.findViewById<Button>(R.id.btn_ins_prestito)
@@ -118,14 +118,15 @@ class DettagliLibroUtente : Fragment() {
                     for (prestito in snapshot.children)
                     {
                        val dataOdierna = LocalDate.now()
-                        val dataFine = LocalDate.parse(prestito.child("dataFine").value.toString())
+                        val dataFine = LocalDate.parse(prestito.child("dataScadenza").value.toString())
                         val idUtente = prestito.child("idUtente").value.toString()
-                        val giorni: Long = if (dataFine.isAfter(dataOdierna)) {
+                        /*val giorni: Long = if (dataFine.isAfter(dataOdierna)) {
                             ChronoUnit.DAYS.between(dataOdierna, dataFine)
                         } else {
                             ChronoUnit.DAYS.between(dataFine, dataOdierna)
-                        }
-                        if(idUtente.equals(auth.currentUser?.uid.toString()) && prestito.child("idLibro").value.toString().equals(idL) && giorni<=30)
+                        }*/
+                        val dataRestituzione = prestito.child("dataRestituzione").value.toString()
+                        if(idUtente.equals(auth.currentUser?.uid.toString()) && prestito.child("idLibro").value.toString().equals(idL) && dataRestituzione.equals(""))
                         {
                             x=true
                             break
