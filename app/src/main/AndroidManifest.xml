@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Biblioteca"
         tools:targetApi="31">
         <activity
+            android:name=".ListaPrestiti"
+            android:exported="false" />
+        <activity
             android:name=".PassReset"
             android:exported="false" />
         <activity

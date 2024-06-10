@@ -51,6 +51,7 @@ class DettagliLibroUtente : Fragment() {
             Glide.with(requireContext())
                 .load(it.copertina)
                 .into(copertinaImageView)
+
             val but_prestito = view.findViewById<Button>(R.id.btn_ins_prestito)
             view.findViewById<TextView>(R.id.disponibilita_dettagli).text = it.disponibilità.toString()
             cercaPrestito(libro?.ID!!){valido->
