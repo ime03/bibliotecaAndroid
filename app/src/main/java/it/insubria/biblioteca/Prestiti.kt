@@ -1,6 +1,5 @@
 package it.insubria.biblioteca
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,7 +44,8 @@ class Prestiti : Fragment() {
                 {
                     for (prestito in snapshot.children)
                     {
-                        if(prestito.child("idUtente").value.toString().equals(auth.currentUser?.uid.toString()))
+                        val emailUtente = prestito.child("idUtente").getValue(String::class.java)
+                        if (emailUtente == auth.currentUser?.email)
                         {
                             val p = prestito.getValue(Prestito::class.java)
                             prestitiUtente.add(p!!)

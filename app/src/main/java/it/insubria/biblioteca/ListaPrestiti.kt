@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
+
 class ListaPrestiti : Fragment() {
     private lateinit var prestitiUtente: ArrayList<Prestito>
     private lateinit var libriPrestito: ArrayList<Libro>
@@ -57,42 +58,54 @@ class ListaPrestiti : Fragment() {
     }
 
     private fun associaLibri(prestitiUtente: ArrayList<Prestito>) {
+        var iterazioni =0
         val ref = FirebaseDatabase.getInstance().getReference("books")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (prestito in prestitiUtente) {
-                    val l = snapshot.child(prestito.IdLibro!!).getValue(Libro::class.java)
+        for (prestito in prestitiUtente)
+        {
+            ref.child(prestito.IdLibro!!).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val l = snapshot.getValue(Libro::class.java)
                     libriPrestito.add(l!!)
-                }
-
-                val prestitiLibri = ArrayList<PrestitoLibro>()
-                for (i in prestitiUtente.indices) {
-                    val p = prestitiUtente[i]
-                    val l = libriPrestito[i]
-                    val pl = PrestitoLibro(p.IdPrestito,p.IdLibro,p.IdUtente,p.dataInizio,p.dataScadenza,p.dataRestituzione,l.ID,l.isbn,l.titolo,l.autore,l.genere,l.disponibilità,l.copertina,l.data,l.descrizione)
-                    prestitiLibri.add(pl)
-                }
-
-                recyclerView.adapter = AdapterGestionePrestiti(prestitiLibri).apply {
-                    setOnItemClickListener(object : AdapterGestionePrestiti.onItemClickListener{
-                        override fun onItemClick(position: Int) {
-                            val bundle = Bundle().apply {
-                                putParcelable("prestitolibro", prestitiLibri[position])
-                            }
-                            parentFragmentManager.beginTransaction()
-                                .replace(R.id.frame_layout, DettagliPrestito().apply {
-                                    arguments = bundle
-                                })
-                                .addToBackStack(null)
-                                .commit()
+                    iterazioni++
+                    if (iterazioni == prestitiUtente.size) {
+                        val prestitiLibri = ArrayList<PrestitoLibro>()
+                        for (i in prestitiUtente.indices) {
+                            val p = prestitiUtente[i]
+                            val l = libriPrestito[i]
+                            val pl = PrestitoLibro(p.IdPrestito,p.IdLibro,p.IdUtente,p.dataInizio,p.dataScadenza,p.dataRestituzione,l.ID,l.isbn,l.titolo,l.autore,l.genere,l.disponibilità,l.copertina,l.data,l.descrizione)
+                            prestitiLibri.add(pl)
                         }
-                    })
-                }
-            }
+                        recyclerView.adapter = AdapterGestionePrestiti(prestitiLibri).apply {
+                            setOnItemClickListener(object : AdapterGestionePrestiti.onItemClickListener{
+                                override fun onItemClick(position: Int) {
+                                    val bundle = Bundle().apply {
+                                        putParcelable("prestitolibro", prestitiLibri[position])
+                                    }
+                                    parentFragmentManager.beginTransaction()
+                                        .replace(R.id.frame_layout, DettagliPrestito().apply {
+                                            arguments = bundle
+                                        })
+                                        .addToBackStack(null)
+                                        .commit()
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "errore ${error.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+                                }
+                            })
+                        }
+
+                    }
+
+                }
+
+
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
     }
+
+
+
 }

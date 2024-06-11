@@ -84,22 +84,25 @@ class DettagliLibroUtente : Fragment() {
         val idLibro = libro?.ID
         val disponibilità = libro?.disponibilità
         val idPrestito = ref.push().key.toString()
-        val p = Prestito(idPrestito,idLibro,
-            auth.currentUser?.uid,LocalDate.now().toString(),LocalDate.now().plusDays(30).toString(),"")
+        val emailUtente = auth.currentUser?.email ?: "" // Ottieni l'email dell'utente
+        val p = Prestito(
+            idPrestito, idLibro,
+            emailUtente, // Utilizza l'email dell'utente
+            LocalDate.now().toString(), LocalDate.now().plusDays(30).toString(), ""
+        )
         ref.child(idPrestito).setValue(p).addOnSuccessListener {
-            Toast.makeText(context,"Prestito aggiunto correttamente!",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Prestito aggiunto correttamente!", Toast.LENGTH_SHORT).show()
             val btn_prestito = view?.findViewById<Button>(R.id.btn_ins_prestito)
             btn_prestito?.setText("Presito Aggiunto")
-            btn_prestito?.isEnabled= false
-            aggiornaDisponilibità(idLibro!!,disponibilità!!)
-            val intent = Intent(context,UserHome::class.java)
+            btn_prestito?.isEnabled = false
+            aggiornaDisponilibità(idLibro!!, disponibilità!!)
+            val intent = Intent(context, UserHome::class.java)
             startActivity(intent)
             requireActivity().finish()
 
         }.addOnFailureListener {
-            Toast.makeText(context,"Errore",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Errore", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun aggiornaDisponilibità(idLibro: String, disponibilità: Int) {
@@ -118,7 +121,7 @@ class DettagliLibroUtente : Fragment() {
                 {
                     for (prestito in snapshot.children)
                     {
-                       val dataOdierna = LocalDate.now()
+                        val dataOdierna = LocalDate.now()
                         val dataFine = LocalDate.parse(prestito.child("dataScadenza").value.toString())
                         val idUtente = prestito.child("idUtente").value.toString()
                         /*val giorni: Long = if (dataFine.isAfter(dataOdierna)) {
