@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inserisci"
+    tools:layout_editor_absoluteX="212dp"
+    tools:layout_editor_absoluteY="73dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="73dp">
+
+        <ImageView
+            android:id="@+id/imageViewCopertina"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            tools:src="@drawable/ic_vuoto" />
+
+        <EditText
+            android:id="@+id/editTextTitolo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="Titolo"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextIsbn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextIsbn"
+            app:layout_constraintTop_toTopOf="@+id/editTextIsbn" />
+
+        <EditText
+            android:id="@+id/editTextAutore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Autore"
+            android:inputType="text"
+            app:layout_constraintEnd_toStartOf="@+id/editTextCopie"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextIsbn" />
+
+        <EditText
+            android:id="@+id/editTextGenere"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Genere"
+            android:inputType="text"
+            app:layout_constraintEnd_toStartOf="@+id/editTextDescrizione"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextAutore" />
+
+        <EditText
+            android:id="@+id/editTextCopie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="Disponibilità"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextAutore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextAutore"
+            app:layout_constraintTop_toTopOf="@+id/editTextAutore" />
+
+        <EditText
+            android:id="@+id/editTextIsbn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:hint="ISBN"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTitolo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+        <Button
+            android:id="@+id/buttonCopertina"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Inserisci Copertina"
+            app:layout_constraintEnd_toStartOf="@+id/buttonInserisci"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextGenere" />
+
+        <Button
+            android:id="@+id/buttonInserisci"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Aggiungi"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonCopertina"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonCopertina"
+            app:layout_constraintTop_toTopOf="@+id/buttonCopertina" />
+
+        <EditText
+            android:id="@+id/editTextDescrizione"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="Descrizione"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextGenere"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextGenere"
+            app:layout_constraintTop_toTopOf="@+id/editTextGenere" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/logo2"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewCopertina"
+            app:layout_constraintEnd_toStartOf="@+id/editTextIsbn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

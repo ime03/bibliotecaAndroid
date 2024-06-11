@@ -12,7 +12,6 @@ class UserHome : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_user_home)
         replaceFragment(HomeU())
 
