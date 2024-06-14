@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Titolo:"
+                    android:text="@string/titolo_text"
                     android:textStyle="bold" />
 
                 <TextView
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Autore:"
+                    android:text="@string/autore_text"
                     android:textStyle="bold" />
 
                 <TextView
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Genere:"
+                    android:text="@string/genere_text"
                     android:textStyle="bold" />
 
                 <TextView
@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Disponibilità:"
+                    android:text="@string/disp_text"
                     android:textStyle="bold" />
 
                 <TextView
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Descrizione:"
+                    android:text="@string/descrizione_text"
                     android:textStyle="bold" />
 
             </LinearLayout>

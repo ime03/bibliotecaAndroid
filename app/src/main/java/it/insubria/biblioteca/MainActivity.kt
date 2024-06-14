@@ -47,15 +47,15 @@ class MainActivity : AppCompatActivity() {
     private fun controlloCampi() {
         val mail = findViewById<EditText>(R.id.EditTextEmail)
         val pass = findViewById<EditText>(R.id.EditTextPassword)
-        val mailOk = campoValido(mail, "La mail non deve essere vuota")
-        val passOk = campoValido(pass, "La password non deve essere vuota")
+        val mailOk = campoValido(mail, getString(R.string.mail_vuota))
+        val passOk = campoValido(pass, getString(R.string.pass_vuota))
         if(mailOk && passOk)
         {
             autenticazione(mail,pass)
         }
         else
         {
-            Toast.makeText(this,"I campi devono essere tutti completi", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.campi_vuoti), Toast.LENGTH_SHORT).show()
         }
 
     }

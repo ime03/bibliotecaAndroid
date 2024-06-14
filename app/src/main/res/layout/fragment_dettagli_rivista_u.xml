@@ -48,32 +48,8 @@
                 android:id="@+id/titolo_dettagli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Il piccolo principe"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/autore_text"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/autore_dettagli"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Giuseppe"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -94,9 +70,54 @@
                 android:id="@+id/genere_dettagli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Narrativa"
-                android:layout_marginLeft="10dp"/>
+                android:text="@string/periodo_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/periodicità_dettagli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/pubbl_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pubblicazione_dettagli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,8 +165,7 @@
             android:id="@+id/descrizione_dettagli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="è bello" />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btn_ins_prestito"

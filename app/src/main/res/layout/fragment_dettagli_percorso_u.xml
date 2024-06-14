@@ -48,9 +48,8 @@
                 android:id="@+id/titolo_dettagli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Il piccolo principe"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,16 +63,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/autore_text"
+                android:text="@string/EtàMin_text"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/autore_dettagli"
+                android:id="@+id/etàmin_dettagli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Giuseppe"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,41 +85,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/genere_text"
+                android:text="@string/EtàMax_text"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/genere_dettagli"
+                android:id="@+id/etàmax_dettagli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Narrativa"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/disp_text"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/disponibilita_dettagli"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/purple"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:text="10"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,12 +118,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="è bello" />
-
-        <Button
-            android:id="@+id/btn_ins_prestito"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/aggprestito_text" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

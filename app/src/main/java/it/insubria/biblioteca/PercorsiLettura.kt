@@ -11,45 +11,55 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 
-class HomeA : Fragment() {
-    private lateinit var bookList: ArrayList<Libro>
+class PercorsiLettura : Fragment() {
+    // TODO: Rename and change types of parameters
+    private lateinit var percorsi: ArrayList<PercorsoLettura>
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bookList = arrayListOf<Libro>()
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-       // recyclerView = view.findViewById(R.id.itemListNovitàLibri)
-        //recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        //recyclerView.setHasFixedSize(true)
-        //getData()
+        val view = inflater.inflate(R.layout.fragment_perclett, container, false)
+        percorsi = arrayListOf<PercorsoLettura>()
+        recyclerView = view.findViewById(R.id.itemListNovitàPerclett)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+        getData()
         return view
     }
 
-
     private fun getData(){
-        val ref = FirebaseDatabase.getInstance().getReference("books")
+        val ref = FirebaseDatabase.getInstance().getReference("percorsilettura")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    for (booksSnapshot in snapshot.children)
+                    for (percorso in snapshot.children)
                     {
-                            val book = booksSnapshot.getValue(Libro::class.java)
-                            bookList.add(book!!)
+                        val oggi = LocalDate.now()
+                        val data = LocalDate.parse(percorso.child("dataInserimento").getValue(String::class.java))
+                        val giorni = ChronoUnit.DAYS.between(data, oggi)
+                        if(giorni<30)
+                        {
+                            val p = percorso.getValue(PercorsoLettura::class.java)
+                            percorsi.add(p!!)
+
+                        }
+
 
                     }
-                    recyclerView.adapter = Adapter(bookList).apply {
-                        setOnItemClickListener(object : Adapter.onItemClickListener{
+                    recyclerView.adapter = AdapterPercorsi(percorsi).apply {
+                        setOnItemClickListener(object : AdapterPercorsi.onItemClickListener{
                             override fun onItemClick(position: Int) {
                                 val bundle = Bundle().apply {
-                                    putParcelable("libro", bookList[position])
+                                    putParcelable("percorso", percorsi[position])
                                 }
                                 parentFragmentManager.beginTransaction()
-                                    .replace(R.id.fragmentContainerView, DettagliLibroAdmin().apply {
+                                    .replace(R.id.fragmentContainerView3, DettagliPercorsoUtente().apply {
                                         arguments = bundle
                                     })
                                     .addToBackStack(null)
@@ -69,5 +79,6 @@ class HomeA : Fragment() {
 
         })
     }
-}
 
+
+}

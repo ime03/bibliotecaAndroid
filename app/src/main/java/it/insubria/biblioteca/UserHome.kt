@@ -12,6 +12,7 @@ class UserHome : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_user_home)
         replaceFragment(HomeU())
 
@@ -37,4 +38,6 @@ class UserHome : AppCompatActivity() {
         //supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commit()
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
     }
+
+
 }

@@ -13,8 +13,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 
 class ListaPrestiti : Fragment() {
@@ -62,7 +60,7 @@ class ListaPrestiti : Fragment() {
         val ref = FirebaseDatabase.getInstance().getReference("books")
         for (prestito in prestitiUtente)
         {
-            ref.child(prestito.IdLibro!!).addListenerForSingleValueEvent(object : ValueEventListener{
+            ref.child(prestito.idArticolo!!).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val l = snapshot.getValue(Libro::class.java)
                     libriPrestito.add(l!!)
@@ -72,7 +70,7 @@ class ListaPrestiti : Fragment() {
                         for (i in prestitiUtente.indices) {
                             val p = prestitiUtente[i]
                             val l = libriPrestito[i]
-                            val pl = PrestitoLibro(p.IdPrestito,p.IdLibro,p.IdUtente,p.dataInizio,p.dataScadenza,p.dataRestituzione,l.ID,l.isbn,l.titolo,l.autore,l.genere,l.disponibilità,l.copertina,l.data,l.descrizione)
+                            val pl = PrestitoLibro(p.IdPrestito,p.idArticolo,p.IdUtente,p.dataInizio,p.dataScadenza,p.dataRestituzione,l.ID,l.isbn,l.titolo,l.autore,l.genere,l.disponibilità,l.copertina,l.data,l.descrizione)
                             prestitiLibri.add(pl)
                         }
                         recyclerView.adapter = AdapterGestionePrestiti(prestitiLibri).apply {

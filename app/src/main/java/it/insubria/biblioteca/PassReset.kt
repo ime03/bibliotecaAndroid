@@ -39,7 +39,7 @@ class PassReset : AppCompatActivity() {
             val resetEmail = email.text.toString()
             auth.sendPasswordResetEmail(resetEmail)
                 .addOnSuccessListener {
-                    Toast.makeText(this,"Ti abbiamo inviato un email per il cambio password!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,getString(R.string.inviomail_text),Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@PassReset,MainActivity::class.java)
                     startActivity(intent)
                 }

@@ -11,45 +11,54 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 
-class HomeA : Fragment() {
-    private lateinit var bookList: ArrayList<Libro>
+class Riviste : Fragment() {
+    private lateinit var riviste: ArrayList<Rivista>
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bookList = arrayListOf<Libro>()
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-       // recyclerView = view.findViewById(R.id.itemListNovitàLibri)
-        //recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        //recyclerView.setHasFixedSize(true)
-        //getData()
+        val view = inflater.inflate(R.layout.fragment_riviste, container, false)
+        riviste = arrayListOf<Rivista>()
+        recyclerView = view.findViewById(R.id.itemListNovitàRiviste)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+        getData()
         return view
     }
 
-
     private fun getData(){
-        val ref = FirebaseDatabase.getInstance().getReference("books")
+        val ref = FirebaseDatabase.getInstance().getReference("riviste")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    for (booksSnapshot in snapshot.children)
+                    for (rivista in snapshot.children)
                     {
-                            val book = booksSnapshot.getValue(Libro::class.java)
-                            bookList.add(book!!)
+                        val oggi = LocalDate.now()
+                        val data = LocalDate.parse(rivista.child("dataInserimento").getValue(String::class.java))
+                        val giorni = ChronoUnit.DAYS.between(data, oggi)
+                        if(giorni<30)
+                        {
+                            val r = rivista.getValue(Rivista::class.java)
+                            riviste.add(r!!)
+
+                        }
+
 
                     }
-                    recyclerView.adapter = Adapter(bookList).apply {
-                        setOnItemClickListener(object : Adapter.onItemClickListener{
+                    recyclerView.adapter = AdapterRivista(riviste).apply {
+                        setOnItemClickListener(object : AdapterRivista.onItemClickListener{
                             override fun onItemClick(position: Int) {
                                 val bundle = Bundle().apply {
-                                    putParcelable("libro", bookList[position])
+                                    putParcelable("rivista", riviste[position])
                                 }
                                 parentFragmentManager.beginTransaction()
-                                    .replace(R.id.fragmentContainerView, DettagliLibroAdmin().apply {
+                                    .replace(R.id.fragmentContainerView3, DettagliRivistaUtente().apply {
                                         arguments = bundle
                                     })
                                     .addToBackStack(null)
@@ -69,5 +78,5 @@ class HomeA : Fragment() {
 
         })
     }
-}
 
+}

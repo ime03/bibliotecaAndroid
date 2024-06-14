@@ -5,20 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 
 class HomeU : Fragment() {
     private lateinit var bookList: ArrayList<Libro>
-    private lateinit var recyclerView: RecyclerView
+    //private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,15 +26,41 @@ class HomeU : Fragment() {
     ): View? {
         bookList = arrayListOf<Libro>()
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        recyclerView = view.findViewById(R.id.itemListNovità)
+        /*recyclerView = view.findViewById(R.id.itemListNovitàLibri)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-        getData()
+        getData()*/
+        val btn_libri = view.findViewById<Button>(R.id.libriButton)
+        val btnRiv = view.findViewById<Button>(R.id.rivButton)
+        val btnFilm = view.findViewById<Button>(R.id.filmButton)
+        val btnMusica = view.findViewById<Button>(R.id.musicaButton)
+        val btnPercorsi = view.findViewById<Button>(R.id.perclettButton)
+        btn_libri.setOnClickListener {
+            replaceFragment(Libri())
+        }
+        btnRiv.setOnClickListener {
+            replaceFragment(Riviste())
+        }
+        btnFilm.setOnClickListener {
+            replaceFragment(Films())
+        }
+        btnMusica.setOnClickListener {
+            replaceFragment(Albums())
+        }
+        btnPercorsi.setOnClickListener {
+            replaceFragment(PercorsiLettura())
+        }
+
         return view
     }
 
+    private fun replaceFragment(fragment: Fragment){
+        //supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commit()
+        childFragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, fragment).addToBackStack(null).commit()
+    }
 
-    private fun getData(){
+
+    /*private fun getData(){
         val ref = FirebaseDatabase.getInstance().getReference("books")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -79,6 +105,6 @@ class HomeU : Fragment() {
 
 
         })
-    }
+    }*/
 }
 

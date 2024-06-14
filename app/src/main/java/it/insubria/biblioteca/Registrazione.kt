@@ -28,19 +28,19 @@ class Registrazione : AppCompatActivity() {
         val dnascita = findViewById<EditText>(R.id.EditTextNascita)
         val mail = findViewById<EditText>(R.id.EditTextEmailR)
         val pass = findViewById<EditText>(R.id.EditTextPasswordR)
-        val nomeOk = campoValido(nome, "Il nome non deve essere vuoto")
-        val cognomeOk = campoValido(cognome, "Il cognome non deve essere vuoto")
-        val cfOk = campoValido(cf, "Il codice fiscale non deve essere vuoto")
-        val dnascitaOk = campoValido(dnascita, "La data di nascita non deve essere vuota")
-        val mailOk = campoValido(mail, "La mail non deve essere vuota")
-        val passOk = campoValido(pass, "La password non deve essere vuota")
+        val nomeOk = campoValido(nome, getString(R.string.nome_vuoto))
+        val cognomeOk = campoValido(cognome, getString(R.string.cognome_vuoto))
+        val cfOk = campoValido(cf, getString(R.string.codf_vuoto))
+        val dnascitaOk = campoValido(dnascita, getString(R.string.datan_vuota))
+        val mailOk = campoValido(mail, getString(R.string.mail_vuota))
+        val passOk = campoValido(pass, getString(R.string.pass_vuota))
         if(nomeOk && cognomeOk && cfOk && dnascitaOk && mailOk && passOk)
         {
             registrazione()
         }
         else
         {
-            Toast.makeText(this,"I campi devono essere tutti completi",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.campi_vuoti),Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -54,24 +54,24 @@ class Registrazione : AppCompatActivity() {
         val mail = findViewById<EditText>(R.id.EditTextEmailR).text.toString()
         val pass = findViewById<EditText>(R.id.EditTextPasswordR).text.toString()
         auth.createUserWithEmailAndPassword(mail,pass).addOnSuccessListener {
-            Toast.makeText(this,"Verifica la tua email",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.vermail_text),Toast.LENGTH_SHORT).show()
             auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
                 val uid = auth.uid
                 val user = Utente(uid.toString(),nome,cognome,cf,dnascita,"utente")
                 ref.child(uid!!).setValue(user).addOnSuccessListener {
-                    Toast.makeText(this,"Registrazione effettuata con successo",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,getString(R.string.regeff_text),Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
             }?.addOnFailureListener{ e->
-                Toast.makeText(this,"Registrazione non andata a buon fine a causa di ${e.message}",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"${getString(R.string.reginv_text)} ${e.message}",Toast.LENGTH_SHORT).show()
 
             }
             }.addOnFailureListener { e ->
             Toast.makeText(
                 this,
-                "Registrazione non andata a buon fine a causa di ${e.message}",
+                "${getString(R.string.reginv_text)} ${e.message}",
                 Toast.LENGTH_SHORT
             ).show()
         }

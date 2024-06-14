@@ -40,7 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -64,15 +65,16 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/autore_text"
+                        android:text="@string/EtàMin_text"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/autore_item"
+                        android:id="@+id/minima_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Autore" />
+                        android:text="Minima" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,33 +84,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/utente_text"
+                        android:text="@string/EtàMax_text"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/utente_item"
+                        android:id="@+id/massima_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Utente" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/stato_text"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/stato_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="In corso/Scaduto" />
+                        android:text="Massima" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -2,7 +2,6 @@ package it.insubria.biblioteca
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,18 +17,17 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
-class DettagliLibroUtente : Fragment() {
+class DettagliAlbumUtente : Fragment() {
 
-    private var libro: Libro? = null
+    private var album: Album? = null
     private lateinit var auth:FirebaseAuth
     private lateinit var listaPrestiti: ArrayList<Prestito>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        libro = arguments?.getParcelable("libro") ?: Libro()
+        album = arguments?.getParcelable("album") ?: Album()
         listaPrestiti = arrayListOf<Prestito>()
     }
 
@@ -38,11 +36,11 @@ class DettagliLibroUtente : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_dettagli_libro_u, container, false)
-        libro?.let {
-            view.findViewById<TextView>(R.id.descrizione_dettagli).text = it.isbn
+        val view = inflater.inflate(R.layout.fragment_dettagli_album_u, container, false)
+        album?.let {
             view.findViewById<TextView>(R.id.titolo_dettagli).text = it.titolo
-            view.findViewById<TextView>(R.id.autore_dettagli).text = it.autore
+            view.findViewById<TextView>(R.id.artista_dettagli).text = it.artista
+            view.findViewById<TextView>(R.id.pubblicazione_dettagli).text = it.pubblicazione.toString()
             view.findViewById<TextView>(R.id.genere_dettagli).text = it.genere
             view.findViewById<TextView>(R.id.descrizione_dettagli).text = it.descrizione
 
@@ -54,7 +52,7 @@ class DettagliLibroUtente : Fragment() {
 
             val but_prestito = view.findViewById<Button>(R.id.btn_ins_prestito)
             view.findViewById<TextView>(R.id.disponibilita_dettagli).text = it.disponibilità.toString()
-            cercaPrestito(libro?.ID!!){valido->
+            cercaPrestito(album?.ID!!){valido->
                 if (valido==true)
                 {
                     but_prestito.isEnabled = false
@@ -81,12 +79,12 @@ class DettagliLibroUtente : Fragment() {
 
     private fun nuovoPrestito() {
         val ref = FirebaseDatabase.getInstance().getReference("prestiti")
-        val idLibro = libro?.ID
-        val disponibilità = libro?.disponibilità
+        val idFilm = album?.ID
+        val disponibilità = album?.disponibilità
         val idPrestito = ref.push().key.toString()
         val emailUtente = auth.currentUser?.email ?: "" // Ottieni l'email dell'utente
         val p = Prestito(
-            idPrestito, idLibro,
+            idPrestito, idFilm,
             emailUtente, // Utilizza l'email dell'utente
             LocalDate.now().toString(), LocalDate.now().plusDays(30).toString(), ""
         )
@@ -95,7 +93,7 @@ class DettagliLibroUtente : Fragment() {
             val btn_prestito = view?.findViewById<Button>(R.id.btn_ins_prestito)
             btn_prestito?.setText(getString(R.string.prestagg_text))
             btn_prestito?.isEnabled = false
-            aggiornaDisponilibità(idLibro!!, disponibilità!!)
+            aggiornaDisponilibità(idFilm!!, disponibilità!!)
             val intent = Intent(context, UserHome::class.java)
             startActivity(intent)
             requireActivity().finish()
@@ -105,14 +103,14 @@ class DettagliLibroUtente : Fragment() {
         }
     }
 
-    private fun aggiornaDisponilibità(idLibro: String, disponibilità: Int) {
-        val ref = FirebaseDatabase.getInstance().getReference("books").child(idLibro)
+    private fun aggiornaDisponilibità(idAlbum: String, disponibilità: Int) {
+        val ref = FirebaseDatabase.getInstance().getReference("albums").child(idAlbum)
         ref.child("disponibilità").setValue(disponibilità-1)
         view?.findViewById<TextView>(R.id.disponibilita_dettagli)?.text = (disponibilità-1).toString()
 
     }
 
-    private fun cercaPrestito(idL: String, callback: (Boolean) -> Unit){
+    private fun cercaPrestito(idA: String, callback: (Boolean) -> Unit){
         var x:Boolean = false
         val ref = FirebaseDatabase.getInstance().getReference("prestiti")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -130,7 +128,7 @@ class DettagliLibroUtente : Fragment() {
                             ChronoUnit.DAYS.between(dataFine, dataOdierna)
                         }*/
                         val dataRestituzione = prestito.child("dataRestituzione").value.toString()
-                        if(idUtente.equals(auth.currentUser?.email.toString()) && prestito.child("idArticolo").value.toString().equals(idL) && dataRestituzione.equals(""))
+                        if(idUtente.equals(auth.currentUser?.email.toString()) && prestito.child("idArticolo").value.toString().equals(idA) && dataRestituzione.equals(""))
                         {
                             x=true
                             break
