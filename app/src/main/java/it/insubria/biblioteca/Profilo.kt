@@ -81,7 +81,7 @@ class Profilo : Fragment() {
     private fun selezionaImg() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
-        selezionaImgLauncher.launch(Intent.createChooser(intent, "Seleziona un'immagine di profilo"))
+        selezionaImgLauncher.launch(Intent.createChooser(intent, getString(R.string.sel_img_text)))
     }
 
     private fun caricaImg(filePath: Uri) {
@@ -96,7 +96,7 @@ class Profilo : Fragment() {
                 loadUserProfile()
             }
         }.addOnFailureListener {
-            Toast.makeText(context, "Errore durante il caricamento dell'immagine del profilo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.err_car_img_text), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -107,10 +107,10 @@ class Profilo : Fragment() {
             val userRef = database.child(userId)
             userRef.child("imgProfilo").setValue(imageURL)
                 .addOnSuccessListener {
-                    Toast.makeText(context, "Immagine del profilo aggiornata", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.img_corr_agg_text), Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(context, "Errore durante l'aggiornamento dell'immagine del profilo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.er_agg_img_text), Toast.LENGTH_SHORT).show()
                 }
         }
     }

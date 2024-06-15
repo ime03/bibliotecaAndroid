@@ -59,4 +59,19 @@
     <string name="art_text">"Artista: "</string>
     <string name="EtàMin_text">"Età Minima: "</string>
     <string name="EtàMax_text">"Età Massima: "</string>
+    <string name="libro_text">libri</string>
+    <string name="rivista_text">riviste</string>
+    <string name="musica_text">musica</string>
+    <string name="film_text">film</string>
+    <string name="percorsi_text">percorsi di lettura</string>
+    <string name="nome_text">"Nome: "</string>
+    <string name="cognome_text">"Cognome: "</string>
+    <string name="dn_text">"Data di Nascita: "</string>
+    <string name="cf_text">"Codice Fiscale: "</string>
+    <string name="artcolo_restituito_text">GIA\' RESTITUITO</string>
+    <string name="rest_eff_text">Restituzione avvenuta correttamente</string>
+    <string name="sel_img_text">Seleziona un\'immagine di profilo</string>
+    <string name="err_car_img_text">Errore durante il caricamento dell\'immagine del profilo</string>
+    <string name="img_corr_agg_text">Immagine del profilo aggiornata</string>
+    <string name="er_agg_img_text">Errore durante l\'aggiornamento dell\'immagine del profilo</string>
 </resources>
