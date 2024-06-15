@@ -6,80 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".utente.HomeU">
 
-
-    <Button
-        android:id="@+id/rivButton"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:padding="3sp"
-        android:text="Riviste"
-        app:layout_constraintBottom_toBottomOf="@+id/libriButton"
-        app:layout_constraintEnd_toStartOf="@+id/filmButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/libriButton"
-        app:layout_constraintTop_toTopOf="@+id/libriButton" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/musicaButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:padding="3sp"
-        android:text="Musica"
-        app:layout_constraintBottom_toBottomOf="@+id/libriButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/filmButton"
-        app:layout_constraintTop_toTopOf="@+id/libriButton" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="4">
 
-    <Button
-        android:id="@+id/libriButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:padding="3sp"
-        android:text="Libri"
-        app:layout_constraintEnd_toStartOf="@+id/rivButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/rivButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_menu"
+                android:text="Riviste" />
 
-    <Button
-        android:id="@+id/filmButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:padding="3sp"
-        android:text="Film"
-        app:layout_constraintBottom_toBottomOf="@+id/libriButton"
-        app:layout_constraintEnd_toStartOf="@+id/musicaButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rivButton"
-        app:layout_constraintTop_toTopOf="@+id/libriButton" />
+            <Button
+                android:id="@+id/musicaButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_menu"
+                android:text="Musica" />
 
-    <Button
-        android:id="@+id/perclettButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="3sp"
-        android:text="Percorsi di lettura"
-        app:layout_constraintEnd_toEndOf="@+id/musicaButton"
-        app:layout_constraintStart_toStartOf="@+id/libriButton"
-        app:layout_constraintTop_toBottomOf="@+id/filmButton" />
+            <Button
+                android:id="@+id/libriButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_menu"
+                android:text="Libri" />
+
+            <Button
+                android:id="@+id/filmButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_menu"
+                android:text="Film" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_perclett"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/perclettButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/custom_button_menu"
+                android:text="Percorsi di lettura" />
+        </LinearLayout>
+    </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView3"
         android:name="it.insubria.biblioteca.utente.Libri"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/menuLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/perclettButton"
-        app:layout_constraintStart_toStartOf="@+id/perclettButton"
-        app:layout_constraintTop_toBottomOf="@+id/perclettButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:layout="@layout/fragment_libri" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
