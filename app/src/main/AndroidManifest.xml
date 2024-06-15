@@ -15,16 +15,16 @@
         android:theme="@style/Theme.Biblioteca"
         tools:targetApi="31">
         <activity
-            android:name=".ListaPrestiti"
+            android:name=".admin.ListaPrestiti"
             android:exported="false" />
         <activity
             android:name=".PassReset"
             android:exported="false" />
         <activity
-            android:name=".AdminHome"
+            android:name=".admin.AdminHome"
             android:exported="false" />
         <activity
-            android:name=".UserHome"
+            android:name=".utente.UserHome"
             android:exported="false" />
         <activity
             android:name=".Registrazione"

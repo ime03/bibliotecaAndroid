@@ -3,17 +3,17 @@ package it.insubria.biblioteca
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import it.insubria.biblioteca.admin.AdminHome
+import it.insubria.biblioteca.utente.UserHome
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -95,20 +95,15 @@ class MainActivity : AppCompatActivity() {
         ref.child(utente.uid).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val tipoUtente = snapshot.child("ruolo").value.toString()
-                val cf = snapshot.child("codF").value.toString()
-                val cognome = snapshot.child("cognome").value.toString()
-                val nome = snapshot.child("nome").value.toString()
-                val dnascita = snapshot.child("dataNascita").value.toString()
-                val userId = snapshot.child("userID").value.toString()
                 if(tipoUtente.equals("amministratore"))
                 {
                     Toast.makeText(this@MainActivity,"Benvenuto amministratore",Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@MainActivity,AdminHome::class.java)
+                    val intent = Intent(this@MainActivity, AdminHome::class.java)
                     startActivity(intent)
                 }
                 else if(tipoUtente.equals("utente"))
                 {
-                    val intent = Intent(this@MainActivity,UserHome::class.java)
+                    val intent = Intent(this@MainActivity, UserHome::class.java)
                     startActivity(intent)
                 }
             }

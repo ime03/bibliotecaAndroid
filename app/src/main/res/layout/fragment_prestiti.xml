@@ -4,21 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Prestiti">
+    tools:context=".utente.Prestiti">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemListPrestiti"
+        <Button
+            android:id="@+id/rivButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="3sp"
+            android:text="Riviste"
+            app:layout_constraintBottom_toBottomOf="@+id/libriButton"
+            app:layout_constraintEnd_toStartOf="@+id/filmButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/libriButton"
+            app:layout_constraintTop_toTopOf="@+id/libriButton" />
+
+        <Button
+            android:id="@+id/musicaButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="3sp"
+            android:text="Musica"
+            app:layout_constraintBottom_toBottomOf="@+id/libriButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/filmButton"
+            app:layout_constraintTop_toTopOf="@+id/libriButton" />
+
+        <Button
+            android:id="@+id/libriButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:padding="3sp"
+            android:text="Libri"
+            app:layout_constraintEnd_toStartOf="@+id/rivButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/filmButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="3sp"
+            android:text="Film"
+            app:layout_constraintBottom_toBottomOf="@+id/libriButton"
+            app:layout_constraintEnd_toStartOf="@+id/musicaButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/rivButton"
+            app:layout_constraintTop_toTopOf="@+id/libriButton" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="@+id/musicaButton"
+            app:layout_constraintStart_toStartOf="@+id/libriButton"
+            app:layout_constraintTop_toBottomOf="@+id/rivButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

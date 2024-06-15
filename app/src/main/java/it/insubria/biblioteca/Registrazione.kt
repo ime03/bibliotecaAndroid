@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import it.insubria.biblioteca.dataClass.Utente
 
 class Registrazione : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
