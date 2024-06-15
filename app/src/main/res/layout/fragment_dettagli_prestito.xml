@@ -7,7 +7,7 @@
     tools:context=".utente.DettagliLibroUtente">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/copertinaPrestito"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="16dp"
@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toStartOf="@+id/DataInizioDettagli"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/copertinaPrestito" />
 
     <TextView
         android:id="@+id/DataInizioDettagli"

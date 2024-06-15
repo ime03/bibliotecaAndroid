@@ -7,10 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import it.insubria.biblioteca.dataClass.PrestitoLibro
 import it.insubria.biblioteca.R
 import it.insubria.biblioteca.dataClass.PrestitoRivista
@@ -38,6 +43,31 @@ class DettagliPrestitoRivista : Fragment() {
             btnRestituisci.isEnabled = false
             btnRestituisci.setText("RIVISTA GIA' RESTITUITA")
         }
+
+        val copertinaImageView = view.findViewById<ImageView>(R.id.copertinaPrestito)
+        val rivistaId = prestito?.IdArticolo
+
+        if (!rivistaId.isNullOrEmpty()) {
+            val rivistaRef = FirebaseDatabase.getInstance().getReference("riviste").child(rivistaId)
+            rivistaRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val urlCopertina = snapshot.child("copertina").getValue(String::class.java)
+
+                    // Carica l'immagine di copertina utilizzando Glide
+                    if (!urlCopertina.isNullOrEmpty()) {
+                        Glide.with(this@DettagliPrestitoRivista)
+                            .load(urlCopertina)
+                            .placeholder(R.drawable.placeholder_image) // Immagine di placeholder
+                            .into(copertinaImageView)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context, "Errore nel recupero della copertina: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
         btnRestituisci.setOnClickListener {
             aggiornaDisponibilità(prestito!!.ID!!)
             impostaRestituzione(prestito!!.IdPrestito!!)
