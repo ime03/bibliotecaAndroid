@@ -59,4 +59,20 @@
     <string name="art_text">"Artist: "</string>
     <string name="EtàMin_text">"Minimum age: "</string>
     <string name="EtàMax_text">"Maximum age: "</string>
+    <string name="libro_text">books</string>
+    <string name="rivista_text">magazines</string>
+    <string name="musica_text">music</string>
+    <string name="film_text">films</string>
+    <string name="percorsi_text">reading paths</string>
+    <string name="nome_text">"Name: "</string>
+    <string name="cognome_text">"Surname: "</string>
+    <string name="dn_text">"Date of Birth: "</string>
+    <string name="dn_text">"Date of Birth: "</string>
+    <string name="cf_text">"Fiscal Code: "</string>
+    <string name="artcolo_restituito_text">ALREADY RETURNED</string>
+    <string name="rest_eff_text">Return completed correctly</string>
+    <string name="sel_img_text">Select a profile picture</string>
+    <string name="err_car_img_text">Error loading profile picture</string>
+    <string name="img_corr_agg_text">Updated profile picture</string>
+    <string name="er_agg_img_text">Error updating profile picture</string>
 </resources>

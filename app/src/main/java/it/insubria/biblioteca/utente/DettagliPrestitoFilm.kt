@@ -42,7 +42,7 @@ class DettagliPrestitoFilm : Fragment() {
             view.findViewById<TextView>(R.id.textViewRestituito).visibility = View.VISIBLE
             view.findViewById<TextView>(R.id.RestituzioneDettagli).text = prestito!!.dataRestituzione
             btnRestituisci.isEnabled = false
-            btnRestituisci.setText("FILM GIA' RESTITUITO")
+            btnRestituisci.setText(getString(R.string.artcolo_restituito_text))
         }
 
         val copertinaImageView = view.findViewById<ImageView>(R.id.copertinaPrestito)
@@ -72,7 +72,7 @@ class DettagliPrestitoFilm : Fragment() {
         btnRestituisci.setOnClickListener {
             aggiornaDisponibilità(prestito!!.ID!!)
             impostaRestituzione(prestito!!.IdPrestito!!)
-            Toast.makeText(context,"Restituzione avvenuta correttamente",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,getString(R.string.rest_eff_text),Toast.LENGTH_SHORT).show()
             val intent = Intent(context, UserHome::class.java)
             startActivity(intent)
             requireActivity().finish()
