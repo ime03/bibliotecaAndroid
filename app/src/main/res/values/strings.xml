@@ -69,6 +69,7 @@
     <string name="cognome_text">"Cognome: "</string>
     <string name="dn_text">"Data di Nascita: "</string>
     <string name="cf_text">"Codice Fiscale: "</string>
+    <string name="email_text">"Email: "</string>
     <string name="artcolo_restituito_text">GIA\' RESTITUITO</string>
     <string name="rest_eff_text">Restituzione avvenuta correttamente</string>
     <string name="sel_img_text">Seleziona un\'immagine di profilo</string>

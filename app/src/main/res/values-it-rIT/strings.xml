@@ -59,11 +59,11 @@
     <string name="art_text">"Artista: "</string>
     <string name="EtàMin_text">"Età Minima: "</string>
     <string name="EtàMax_text">"Età Massima: "</string>
-    <string name="libro_text">libri</string>
-    <string name="rivista_text">riviste</string>
-    <string name="musica_text">musica</string>
-    <string name="film_text">film</string>
-    <string name="percorsi_text">percorsi di lettura</string>
+    <string name="libro_text">Libri</string>
+    <string name="rivista_text">Riviste</string>
+    <string name="musica_text">Musica</string>
+    <string name="film_text">Film</string>
+    <string name="percorsi_text">Percorsi di lettura</string>
     <string name="nome_text">"Nome: "</string>
     <string name="cognome_text">"Cognome: "</string>
     <string name="dn_text">"Data di Nascita: "</string>

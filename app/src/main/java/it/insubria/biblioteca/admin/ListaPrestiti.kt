@@ -34,7 +34,7 @@ class ListaPrestiti : Fragment() {
         prestitiUtente = arrayListOf<Prestito>()
         libriPrestito = arrayListOf<Libro>()
         auth = FirebaseAuth.getInstance()
-        val view = inflater.inflate(R.layout.fragment_prestiti, container, false)
+        val view = inflater.inflate(R.layout.fragment_lista_prestiti, container, false)
         recyclerView = view.findViewById(R.id.itemListPrestiti)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
@@ -43,7 +43,7 @@ class ListaPrestiti : Fragment() {
     }
 
     private fun trovaPrestiti() {
-        val ref = FirebaseDatabase.getInstance().getReference("prestiti")
+        val ref = FirebaseDatabase.getInstance().getReference("prestitiLibri")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

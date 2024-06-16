@@ -11,7 +11,7 @@ class AdminHome : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     val homeFragment = HomeA()
     val inserisciFragment = Inserisci()
-    val gestioneFragment = Gestione()
+    val gestioneFragment = ListaPrestiti()
     val profiloFragment = Profilo()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
