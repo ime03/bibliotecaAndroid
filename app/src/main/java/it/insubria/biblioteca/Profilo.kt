@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatImageButton
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -66,14 +67,14 @@ class Profilo : Fragment() {
                 val intent = Intent(context,PassReset::class.java)
                 startActivity(intent)
             }
-        val btnLogout = view.findViewById<Button>(R.id.logoutButton)
-            btnLogout.setOnClickListener {
-                auth.signOut()
-                val intent = Intent(context,MainActivity::class.java)
-                Toast.makeText(context,"Logout effettuato",Toast.LENGTH_SHORT).show()
-                startActivity(intent)
-                requireActivity().finish()
-            }
+        val btnLogout = view.findViewById<AppCompatImageButton>(R.id.logoutButton)
+        btnLogout.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(context, MainActivity::class.java)
+            Toast.makeText(context, "Logout effettuato", Toast.LENGTH_SHORT).show()
+            startActivity(intent)
+            requireActivity().finish()
+        }
         loadUserProfile()
         return view
     }

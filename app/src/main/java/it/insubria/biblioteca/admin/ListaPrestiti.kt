@@ -18,7 +18,6 @@ import it.insubria.biblioteca.R
 import it.insubria.biblioteca.adapter.AdapterGestionePrestiti
 import it.insubria.biblioteca.dataClass.Libro
 import it.insubria.biblioteca.dataClass.Prestito
-import it.insubria.biblioteca.utente.DettagliPrestitoLibro
 
 
 class ListaPrestiti : Fragment() {
@@ -85,13 +84,6 @@ class ListaPrestiti : Fragment() {
                                     val bundle = Bundle().apply {
                                         putParcelable("prestitolibro", prestitiLibri[position])
                                     }
-                                    parentFragmentManager.beginTransaction()
-                                        .replace(R.id.frame_layout, DettagliPrestitoLibro().apply {
-                                            arguments = bundle
-                                        })
-                                        .addToBackStack(null)
-                                        .commit()
-
                                 }
                             })
                         }
